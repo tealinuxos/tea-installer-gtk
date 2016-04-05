@@ -1,0 +1,9 @@
+Package: tea-installer-gtk
+Section: xfce
+Version: 0.1-build1
+Architecture: all
+Depends: apt (>=1.0), python-apt (>=0.9), python3 (>=3.4)
+Priority: extra
+Maintainer: nurul irfan <irfanlongstride@gmail.com>
+Description: Create .tea packages
+ Create .tea packages for software and it's dependencies for offline usage
