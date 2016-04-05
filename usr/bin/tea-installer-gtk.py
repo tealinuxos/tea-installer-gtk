@@ -7,6 +7,7 @@ from shutil import rmtree
 import tarfile
 import sys, os
 
+
 class MainWindow(Gtk.Assistant):
     def __init__(self, filename):
         Gtk.Assistant.__init__(self)
@@ -16,9 +17,31 @@ class MainWindow(Gtk.Assistant):
         self.create_page_1()
         self.create_page_2()
 
+        # add info button
+        info_button = Gtk.MenuToolButton(label='info')
+        info_menu = Gtk.Menu()
+        help_menu_item = Gtk.MenuItem()
+        help_menu_item.set_label('Bantuan')
+        help_menu_item.connect('activate', self.help_activated)
+        info_menu.append(help_menu_item)
+        about_menu_item = Gtk.MenuItem()
+        about_menu_item.set_label('Tentang')
+        about_menu_item.connect('activate', self.about_activated)
+        info_menu.append(about_menu_item)
+        info_button.set_menu(info_menu)
+        self.add_action_widget(info_button)
+
         self.set_size_request(400, 200)
         self.show_all()
         Gtk.main()
+
+    def help_activated(self, *args):
+        print('help activated')
+        print(*args)
+
+    def about_activated(self, *args):
+        print('about activated')
+        print(*args)
 
     def create_page_1(self):
         welcome_label = Gtk.Label("Selamat datang di Tea Installer")
