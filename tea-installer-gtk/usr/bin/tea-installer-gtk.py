@@ -1,13 +1,22 @@
 #!/usr/bin/python3
 
+# TODO: add notification, redesign, add privilege elevation
+
+import gettext
+localesApp="default"
+localesDir="/usr/share/tea-installer-gtk/locale/"
+gettext.bindtextdomain(localesApp, localesDir)
+gettext.textdomain(localesApp)
+from gettext import gettext as _
+
 from gi import require_version
 require_version('Gtk', '3.0')
+require_version('Vte', '2.91')
 from gi.repository import Gtk, Vte, GLib
 from shutil import rmtree
 import tarfile
 import sys, os
 from optparse import OptionParser
-sys.path.append('/usr/share/gdebi')
 
 
 class MainWindow(Gtk.Assistant):
@@ -53,8 +62,9 @@ class MainWindow(Gtk.Assistant):
             self.install_packages()
             self.commit()
         self.connect('prepare', self.prepare_handler)
+        self.connect('close', self.close_button_pressed)
         self.show_all()
-        Gtk.main()
+
 
     def popup_info(self, widget, event):
         info_menu = Gtk.Menu()
@@ -77,20 +87,31 @@ class MainWindow(Gtk.Assistant):
                         Gtk.get_current_event_time())
         return True
 
-    def help_activated(self, *args):
+    @staticmethod
+    def help_activated(*args):
         print('help activated')
         print(args)
 
-    def about_activated(self, *args):
+    @staticmethod
+    def about_activated(*args):
         print('about activated')
         print(args)
 
+    @staticmethod
+    def close_button_pressed(self, *args):
+        try:
+            rmtree('/tmp/.teatemp')
+        except FileNotFoundError:
+            pass
+        Gtk.main_quit()
+
     def create_page_1(self):
-        welcome_label = Gtk.Label("Selamat datang di Tea Installer")
+        welcome_label = Gtk.Label(label=_('Welcome to Tea Installer'))
+        print(_('Welcome to Tea Installer'))
         welcome_label.set_halign(Gtk.Align.START)
         welcome_label.set_margin_bottom(6)
 
-        hint_label = Gtk.Label(label="Pilih sebuah file .tea")
+        hint_label = Gtk.Label(label=_("Choose a .tea file"))
         hint_label.set_line_wrap(True)
         hint_label.set_halign(Gtk.Align.START)
         hint_label.set_line_wrap_mode(Gtk.WrapMode.WORD)
@@ -111,8 +132,7 @@ class MainWindow(Gtk.Assistant):
 
         self.append_page(self.page1)
         self.set_page_type(self.page1, Gtk.AssistantPageType.INTRO)
-        self.set_page_title(self.page1, 'Pilih file')
-        # self.set_forward_page_func(self.process_file_tea)
+        self.set_page_title(self.page1, _('Choose a file'))
 
     def tea_file_selected(self, *args):
         self.set_page_complete(self.page1, True)
@@ -124,7 +144,7 @@ class MainWindow(Gtk.Assistant):
             except FileNotFoundError:
                 pass
             open_file = tarfile.open(self.page1.get_children()[2].get_filename(), 'r:gz')
-            print('nama file:'+self.page1.get_children()[2].get_filename())
+            print('file name:'+self.page1.get_children()[2].get_filename())
             open_file.extractall('/tmp/.teatemp')
             open_file.close()
             self.list_package.clear()
@@ -136,11 +156,11 @@ class MainWindow(Gtk.Assistant):
             with open('/tmp/.teatemp/size') as o:
                 installed_size = o.readline()
                 print(installed_size)
-            self.text_bottom_page2.set_label('Ukuran berkas terpasang '+installed_size+'\n'
-                                             'Lanjutkan memasang paket-paket tersebut?')
+            self.text_bottom_page2.set_label(_('Installed size: ')+installed_size+'\n' +
+                                             _('Continue Installing the packages?'))
             # self.connect('prepare', self.install_packages)
         except (ValueError, FileNotFoundError):
-            self.text_bottom_page2.set_label('Lanjutkan memasang paket-paket tersebut?')
+            self.text_bottom_page2.set_label(_('Continue Installing the packages?'))
 
     def create_page_2(self):
         self.text_bottom_page2 = Gtk.Label()
@@ -148,7 +168,7 @@ class MainWindow(Gtk.Assistant):
         treeview = Gtk.TreeView()
         treeview.set_model(self.list_package)
         renderer = Gtk.CellRendererText()
-        column = Gtk.TreeViewColumn(title='Nama Paket', cell_renderer=renderer, text=0)
+        column = Gtk.TreeViewColumn(title=_('Package Name'), cell_renderer=renderer, text=0)
         column.set_sizing(Gtk.TreeViewColumnSizing.FIXED)
         column.set_resizable(True)
         column.set_min_width(280)
@@ -166,24 +186,28 @@ class MainWindow(Gtk.Assistant):
         self.page2.add(scroll)
         self.page2.add(self.text_bottom_page2)
         self.append_page(self.page2)
-        self.set_page_title(self.page2, 'Konfirmasi')
-        # self.set_page_type(self.page2, Gtk.AssistantPageType.CUSTOM)
+        self.set_page_title(self.page2, _('Confirm'))
+        self.set_page_type(self.page2, Gtk.AssistantPageType.CONFIRM)
         self.set_page_complete(self.page2, True)
 
     def create_page_3(self):
         self.terminal = Vte.Terminal()
+        expander = Gtk.Expander()
+        expander.add(self.terminal)
         self.page3 = Gtk.Box(spacing=6)
         self.page3.set_orientation(Gtk.Orientation.VERTICAL)
-        label = Gtk.Label(label='Menginstall..')
+        # label = Gtk.Label(label=_('Installing...'))
         self.terminal.set_size_request(300,200)
         self.progress = Gtk.ProgressBar()
-        self.progress.set_text('Memasang...')
+        self.progress.set_text(_('Installing...'))
         self.progress.set_show_text(True)
-        self.page3.add(label)
+        # self.page3.add(label)
         self.page3.add(self.progress)
-        self.page3.add(self.terminal)
+        self.page3.add(expander)
         self.append_page(self.page3)
-        self.set_page_title(self.page3, 'Memasang')
+        self.set_page_type(self.page3, Gtk.AssistantPageType.SUMMARY)
+        self.set_page_complete(self.page3, False)
+        self.set_page_title(self.page3, _('Installing'))
 
     def install_packages(self, *args):
         try:
@@ -195,10 +219,11 @@ class MainWindow(Gtk.Assistant):
             print(command)
 
             def install_complete(terminal, status, *args):
-                self.progress.set_text('Selesai')
+                self.progress.set_text(_('Done'))
                 self.progress.set_fraction(1)
                 print("exit status: ")
                 print(status)
+                self.set_page_complete(self.page3, True)
 
             def pulse_bar(*args):
                 self.progress.pulse()
@@ -238,4 +263,6 @@ if __name__ == '__main__':
             MainWindow(None)
     except KeyboardInterrupt:
         sys.exit()
+
+    Gtk.main()
 

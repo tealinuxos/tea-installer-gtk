@@ -1,0 +1,55 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: tea-installer-gtk\n"
+"POT-Creation-Date: 2016-04-20 21:46+0700\n"
+"PO-Revision-Date: 2016-04-20 21:46+0700\n"
+"Last-Translator: \n"
+"Language-Team: TeaLinuxOS8 Developers\n"
+"Language: id\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ../../../../../bin\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Poedit-SearchPath-0: tea-installer-gtk.py\n"
+
+#: tea-installer-gtk.py:92 tea-installer-gtk.py:93
+msgid "Welcome to Tea Installer"
+msgstr "Selamat datang di Tea Installer"
+
+#: tea-installer-gtk.py:97
+msgid "Choose a .tea file"
+msgstr "Pilih sebuah berkas .tea"
+
+#: tea-installer-gtk.py:118
+msgid "Choose a file"
+msgstr "Pilih File"
+
+#: tea-installer-gtk.py:142
+msgid "Installed size: "
+msgstr "Ukuran terpasang"
+
+#: tea-installer-gtk.py:143 tea-installer-gtk.py:146
+msgid "Continue Installing the packages?"
+msgstr "Lanjutkan memasang paket-paket tersebut?"
+
+#: tea-installer-gtk.py:154
+msgid "Package Name"
+msgstr "Nama Paket"
+
+#: tea-installer-gtk.py:172
+msgid "Confirm"
+msgstr "Konfirmasi"
+
+#: tea-installer-gtk.py:182
+msgid "Installing..."
+msgstr "Memasang..."
+
+#: tea-installer-gtk.py:191
+msgid "Installing"
+msgstr "Memasang"
+
+#: tea-installer-gtk.py:203
+msgid "Done"
+msgstr "Selesai"
