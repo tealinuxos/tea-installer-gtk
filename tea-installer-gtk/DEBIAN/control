@@ -1,6 +1,6 @@
 Package: tea-installer-gtk
 Section: xfce
-Version: 0.1-build1
+Version: 0.1-build15
 Architecture: all
 Depends: apt (>=1.0), python-apt (>=0.9), python3 (>=3.4)
 Priority: extra

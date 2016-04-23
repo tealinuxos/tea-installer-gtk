@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 
-# TODO: add notification, redesign, add privilege elevation
+# TODO: add notification, redesign
 
 import gettext
 localesApp="default"
@@ -20,9 +20,13 @@ from optparse import OptionParser
 
 
 class MainWindow(Gtk.Assistant):
-    def __init__(self, filename):
-        Gtk.Assistant.__init__(self)
+    def __init__(self):
+        Gtk.Assistant.__init__(self, use_header_bar=True)
+        self.set_position(Gtk.WindowPosition.CENTER_ALWAYS)
 
+        self.terminal = Vte.Terminal()
+        self.text_on_page2 = Gtk.Label()
+        self.text_bottom_page2 = Gtk.Label()
         self.list_package = Gtk.ListStore(str)
         self.tea_file_chooser = Gtk.FileChooserButton()
         self.page1 = None
@@ -32,23 +36,21 @@ class MainWindow(Gtk.Assistant):
         self.create_page_1()
         self.create_page_2()
         self.create_page_3()
-        self.connect('cancel', Gtk.main_quit)
+        self.connect('cancel', self.close_button_pressed)
 
-        # add info button
-        info_button = Gtk.MenuToolButton(label='info')
-        info_menu = Gtk.Menu()
-        help_menu_item = Gtk.MenuItem()
-        help_menu_item.set_label('Bantuan')
-        help_menu_item.connect('activate', self.help_activated)
-        info_menu.append(help_menu_item)
-        about_menu_item = Gtk.MenuItem()
-        about_menu_item.set_label('Tentang')
-        about_menu_item.connect('activate', self.about_activated)
-        info_menu.append(about_menu_item)
-        info_button.connect('clicked', self.popup_info, info_button)
-        self.add_action_widget(info_button)
-        info_button.set_menu(info_menu)
-        self.set_size_request(400, 200)
+        separator = Gtk.Separator()
+        separator.set_orientation(Gtk.Orientation.VERTICAL)
+        self.add_action_widget(separator)
+
+        help_button = Gtk.Button(label=_('Help'))
+        help_button.connect('clicked', self.help_activated)
+        self.add_action_widget(help_button)
+
+        about_button = Gtk.Button(label=_('About'))
+        about_button.connect('clicked', self.about_activated)
+        self.add_action_widget(about_button)
+
+        self.set_size_request(600, 300)
 
         global opts, args
         print(args)
@@ -64,28 +66,6 @@ class MainWindow(Gtk.Assistant):
         self.connect('prepare', self.prepare_handler)
         self.connect('close', self.close_button_pressed)
         self.show_all()
-
-
-    def popup_info(self, widget, event):
-        info_menu = Gtk.Menu()
-        help_menu_item = Gtk.MenuItem()
-        help_menu_item.set_label('Bantuan')
-        help_menu_item.connect('activate', self.help_activated)
-        info_menu.append(help_menu_item)
-        about_menu_item = Gtk.MenuItem()
-        about_menu_item.set_label('Tentang')
-        about_menu_item.connect('activate', self.about_activated)
-        info_menu.append(about_menu_item)
-        print('info clicked')
-        print(dir(widget))
-        print(event)
-        info_menu.popup(None,
-                        None,
-                        None,
-                        None,
-                        widget,
-                        Gtk.get_current_event_time())
-        return True
 
     @staticmethod
     def help_activated(*args):
@@ -116,11 +96,11 @@ class MainWindow(Gtk.Assistant):
         hint_label.set_halign(Gtk.Align.START)
         hint_label.set_line_wrap_mode(Gtk.WrapMode.WORD)
 
-        filter = Gtk.FileFilter()
-        filter.add_pattern('*.tea')
-        filter.set_name('.tea file')
+        extension_filter = Gtk.FileFilter()
+        extension_filter.add_pattern('*.tea')
+        extension_filter.set_name('.tea file')
         self.tea_file_chooser.set_hexpand(True)
-        self.tea_file_chooser.add_filter(filter)
+        self.tea_file_chooser.add_filter(extension_filter)
         self.tea_file_chooser.connect('selection-changed', self.tea_file_selected)
 
         # self.connect('prepare', self.process_file_tea, self.page2)
@@ -132,7 +112,9 @@ class MainWindow(Gtk.Assistant):
 
         self.append_page(self.page1)
         self.set_page_type(self.page1, Gtk.AssistantPageType.INTRO)
-        self.set_page_title(self.page1, _('Choose a file'))
+        # self.set_page_title(self.page1, _('Choose a file'))
+
+        self.set_page_title(self.page1, _('Tea Installer'))
 
     def tea_file_selected(self, *args):
         self.set_page_complete(self.page1, True)
@@ -163,8 +145,6 @@ class MainWindow(Gtk.Assistant):
             self.text_bottom_page2.set_label(_('Continue Installing the packages?'))
 
     def create_page_2(self):
-        self.text_bottom_page2 = Gtk.Label()
-        self.text_on_page2 = Gtk.Label()
         treeview = Gtk.TreeView()
         treeview.set_model(self.list_package)
         renderer = Gtk.CellRendererText()
@@ -191,8 +171,9 @@ class MainWindow(Gtk.Assistant):
         self.set_page_complete(self.page2, True)
 
     def create_page_3(self):
-        self.terminal = Vte.Terminal()
+        self.terminal.set_size(60, 20)
         expander = Gtk.Expander()
+        expander.set_expanded(True)
         expander.add(self.terminal)
         self.page3 = Gtk.Box(spacing=6)
         self.page3.set_orientation(Gtk.Orientation.VERTICAL)
@@ -210,39 +191,42 @@ class MainWindow(Gtk.Assistant):
         self.set_page_title(self.page3, _('Installing'))
 
     def install_packages(self, *args):
-        try:
-            command = ["/usr/bin/dpkg", "-i", "-G"]
-            for deb in os.listdir('/tmp/.teatemp/'):
-                if deb.endswith('.deb'):
-                    command.append(deb)
-            self.page3.set_orientation(Gtk.Orientation.VERTICAL)
-            print(command)
+        if os.getuid() != 0:
+            os.execv('/usr/bin/gksu', ['gksu', '--', 'tea-installer-gtk', '-n', self.tea_file_chooser.get_filename()])
+        else:
+            try:
+                command = ["/usr/bin/dpkg", "-i", "-G"]
+                for deb in os.listdir('/tmp/.teatemp/'):
+                    if deb.endswith('.deb'):
+                        command.append(deb)
+                self.page3.set_orientation(Gtk.Orientation.VERTICAL)
+                print(command)
 
-            def install_complete(terminal, status, *args):
-                self.progress.set_text(_('Done'))
-                self.progress.set_fraction(1)
-                print("exit status: ")
-                print(status)
-                self.set_page_complete(self.page3, True)
+                def install_complete(terminal, status, *args):
+                    self.progress.set_text(_('Done'))
+                    self.progress.set_fraction(1)
+                    print("exit status: ")
+                    print(status)
+                    self.set_page_complete(self.page3, True)
 
-            def pulse_bar(*args):
-                self.progress.pulse()
+                def pulse_bar(*args):
+                    self.progress.pulse()
 
-            # self.terminal.connect('eof', install_complete)
-            self.terminal.connect('child-exited', install_complete)
-            self.terminal.connect('contents-changed', pulse_bar)
-            self.terminal.spawn_sync(
-                Vte.PtyFlags.DEFAULT,
-                '/tmp/.teatemp',
-                command,
-                [],
-                GLib.SpawnFlags.DO_NOT_REAP_CHILD,
-                None,
-                None,
+                # self.terminal.connect('eof', install_complete)
+                self.terminal.connect('child-exited', install_complete)
+                self.terminal.connect('contents-changed', pulse_bar)
+                self.terminal.spawn_sync(
+                    Vte.PtyFlags.DEFAULT,
+                    '/tmp/.teatemp',
+                    command,
+                    [],
+                    GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+                    None,
+                    None,
 
-            )
-        except (KeyError, FileNotFoundError):
-            pass
+                )
+            except (KeyError, FileNotFoundError):
+                pass
 
     def prepare_handler(self, *args):
         if self.get_current_page() == 0:
@@ -257,10 +241,7 @@ if __name__ == '__main__':
     parser.add_option('-n', '--no-ask', dest='ask', default=False, action='store_true')
     (opts, args) = parser.parse_args()
     try:
-        try:
-            MainWindow(sys.argv[1])
-        except IndexError:
-            MainWindow(None)
+        MainWindow()
     except KeyboardInterrupt:
         sys.exit()
 

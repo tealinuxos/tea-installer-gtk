@@ -1,55 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: tea-installer-gtk\n"
-"POT-Creation-Date: 2016-04-20 21:46+0700\n"
-"PO-Revision-Date: 2016-04-20 21:46+0700\n"
-"Last-Translator: \n"
-"Language-Team: TeaLinuxOS8 Developers\n"
-"Language: id\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-23 19:36+0700\n"
+"PO-Revision-Date: 2016-04-23 19:41+0700\n"
+"Language: id_ID\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: \n"
+"Language-Team: \n"
 "X-Generator: Poedit 1.8.7.1\n"
-"X-Poedit-Basepath: ../../../../../bin\n"
-"Plural-Forms: nplurals=1; plural=0;\n"
-"X-Poedit-SearchPath-0: tea-installer-gtk.py\n"
 
-#: tea-installer-gtk.py:92 tea-installer-gtk.py:93
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:45
+msgid "Help"
+msgstr "Bantuan"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:49
+msgid "About"
+msgstr "Tentang"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:89
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:90
 msgid "Welcome to Tea Installer"
 msgstr "Selamat datang di Tea Installer"
 
-#: tea-installer-gtk.py:97
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:94
 msgid "Choose a .tea file"
 msgstr "Pilih sebuah berkas .tea"
 
-#: tea-installer-gtk.py:118
-msgid "Choose a file"
-msgstr "Pilih File"
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:117
+msgid "Tea Installer"
+msgstr "Tea Installer"
 
-#: tea-installer-gtk.py:142
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:141
 msgid "Installed size: "
 msgstr "Ukuran terpasang"
 
-#: tea-installer-gtk.py:143 tea-installer-gtk.py:146
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:142
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:145
 msgid "Continue Installing the packages?"
 msgstr "Lanjutkan memasang paket-paket tersebut?"
 
-#: tea-installer-gtk.py:154
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:151
 msgid "Package Name"
 msgstr "Nama Paket"
 
-#: tea-installer-gtk.py:172
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:169
 msgid "Confirm"
 msgstr "Konfirmasi"
 
-#: tea-installer-gtk.py:182
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:183
 msgid "Installing..."
 msgstr "Memasang..."
 
-#: tea-installer-gtk.py:191
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:191
 msgid "Installing"
 msgstr "Memasang"
 
-#: tea-installer-gtk.py:203
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:206
 msgid "Done"
 msgstr "Selesai"
