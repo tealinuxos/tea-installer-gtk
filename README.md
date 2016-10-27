@@ -7,4 +7,6 @@ requirements (python 3):
   * tarfile
   * shutil
   * optparse
-  
+
+## Contributing
+to start contributing, see the CONTRIBUTING.md
