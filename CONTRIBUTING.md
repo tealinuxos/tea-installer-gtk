@@ -3,11 +3,11 @@ ini adalah software open source, kamu dapat bekontribusi disini. Berikut beberap
 
 ## Koding
 kalau kamu bisa koding, kamu bisa berkontribusi di bagian ini. software ini dibuat dengan bahasa pemrograman python 3 dan menggunakan beberapa library:
-1. gettext (Translasi String)
-2. gtk+ 3 (Tampilan GUI)
-3. vte Terminal (Tampilan terminal emulator)
-4. tarfile (Kompresi berkas)
-5. optparse (Penanganan command line argument)
+  1. gettext (Translasi String)
+  2. gtk+ 3 (Tampilan GUI)
+  3. vte Terminal (Tampilan terminal emulator)
+  4. tarfile (Kompresi berkas)
+  5. optparse (Penanganan command line argument)
 kamu tidak perlu jago, bahkan dari sini kamu bisa belajar tentang banyak hal
 
 ## Dokumentasi
