@@ -19,16 +19,16 @@ msgstr ""
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:45
 msgid "Help"
-msgstr "Bantuan"
+msgstr "Yardım"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:49
 msgid "About"
-msgstr "Tentang"
+msgstr "Hakkında"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:89
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:90
 msgid "Welcome to Tea Installer"
-msgstr "Selamat datang di Tea Installer"
+msgstr "Tea Installer'a Hoşgeldiniz"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:94
 msgid "Choose a .tea file"
@@ -40,29 +40,29 @@ msgstr "Tea Installer"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:141
 msgid "Installed size: "
-msgstr "Ukuran terpasang"
+msgstr "Kurulan boyut: "
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:142
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:145
 msgid "Continue Installing the packages?"
-msgstr "Lanjutkan memasang paket-paket tersebut?"
+msgstr "Paketleri yüklemeye devam et?"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:151
 msgid "Package Name"
-msgstr "Nama Paket"
+msgstr "Paket Adı"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:169
 msgid "Confirm"
-msgstr "Konfirmasi"
+msgstr "Onayla"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:183
 msgid "Installing..."
-msgstr "Memasang..."
+msgstr "Yükleniyor..."
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:191
 msgid "Installing"
-msgstr "Memasang"
+msgstr "Yükleniyor"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:206
 msgid "Done"
-msgstr "Selesai"
+msgstr "Tamamlandı"
