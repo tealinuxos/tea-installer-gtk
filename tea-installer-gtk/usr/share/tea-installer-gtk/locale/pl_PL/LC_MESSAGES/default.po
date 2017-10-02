@@ -1,0 +1,68 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2016-04-23 19:36+0700\n"
+"PO-Revision-Date: 2017-10-02 19:20+0200\n"
+"Language: pl_PL\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.0.4\n"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:45
+msgid "Help"
+msgstr "Pomoc"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:49
+msgid "About"
+msgstr "Informacje"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:89
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:90
+msgid "Welcome to Tea Installer"
+msgstr "Witaj w instalatorze Tea"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:94
+msgid "Choose a .tea file"
+msgstr "Wybierz plik .tea"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:117
+msgid "Tea Installer"
+msgstr "Instalator Tea"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:141
+msgid "Installed size: "
+msgstr "Rozmiar po zainstalowaniu: "
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:142
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:145
+msgid "Continue Installing the packages?"
+msgstr "Czy chcesz kontynuować instalowanie pakietów?"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:151
+msgid "Package Name"
+msgstr "Nazwa pakietu"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:169
+msgid "Confirm"
+msgstr "Potwierdź"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:183
+msgid "Installing..."
+msgstr "Instalowanie..."
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:191
+msgid "Installing"
+msgstr "Instalowanie"
+
+#: tea-installer-gtk/usr/bin/tea-installer-gtk:206
+msgid "Done"
+msgstr "Gotowe"
