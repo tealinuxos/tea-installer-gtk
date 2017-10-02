@@ -19,50 +19,50 @@ msgstr ""
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:45
 msgid "Help"
-msgstr "Bantuan"
+msgstr "Ayuda"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:49
 msgid "About"
-msgstr "Tentang"
+msgstr "Acerca"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:89
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:90
 msgid "Welcome to Tea Installer"
-msgstr "Selamat datang di Tea Installer"
+msgstr "Bienvenido a Tea Installer"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:94
 msgid "Choose a .tea file"
-msgstr "Pilih sebuah berkas .tea"
+msgstr "Elige un archivo .tea"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:117
 msgid "Tea Installer"
-msgstr "Tea Installer"
+msgstr "Instalador Tea"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:141
 msgid "Installed size: "
-msgstr "Ukuran terpasang"
+msgstr "Tamaño de instalacion:"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:142
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:145
 msgid "Continue Installing the packages?"
-msgstr "Lanjutkan memasang paket-paket tersebut?"
+msgstr "¿Continuar instalando los paquetes?"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:151
 msgid "Package Name"
-msgstr "Nama Paket"
+msgstr "Nombre del paquete"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:169
 msgid "Confirm"
-msgstr "Konfirmasi"
+msgstr "Confirmar"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:183
 msgid "Installing..."
-msgstr "Memasang..."
+msgstr "Instalando..."
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:191
 msgid "Installing"
-msgstr "Memasang"
+msgstr "Instalando"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:206
 msgid "Done"
-msgstr "Selesai"
+msgstr "Terminado"
