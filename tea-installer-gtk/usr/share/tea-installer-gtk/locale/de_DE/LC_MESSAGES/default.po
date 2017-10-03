@@ -19,7 +19,7 @@ msgstr ""
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:45
 msgid "Help"
-msgstr "Yardım"
+msgstr "Hilfe"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:49
 msgid "About"
