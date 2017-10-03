@@ -49,7 +49,7 @@ msgstr "Fortsätt att installera paketet?"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:151
 msgid "Package Name"
-msgstr "Paketnamnet"
+msgstr "Paketnamn"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:169
 msgid "Confirm"
@@ -61,7 +61,7 @@ msgstr "Installerar..."
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:191
 msgid "Installing"
-msgstr "Installera"
+msgstr "Installerar"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:206
 msgid "Done"
