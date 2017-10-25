@@ -23,7 +23,7 @@ msgstr "Hilfe"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:49
 msgid "About"
-msgstr "About"
+msgstr "Über"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:89
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:90
