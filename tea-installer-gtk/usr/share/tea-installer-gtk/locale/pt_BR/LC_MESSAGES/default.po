@@ -28,7 +28,7 @@ msgstr "Sobre"
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:89
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:90
 msgid "Welcome to Tea Installer"
-msgstr "Bem vindo ao Tea Installer"
+msgstr "Bem-vindo ao Instalador Tea"
 
 #: tea-installer-gtk/usr/bin/tea-installer-gtk:94
 msgid "Choose a .tea file"
