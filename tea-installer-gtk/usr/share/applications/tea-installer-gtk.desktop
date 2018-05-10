@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=Tea Installer GTK
+GenericName=Tea Installer GTK
+GenericName[id_ID]=Tea Installer GTK
+Comment=install offline package created by Tea Maker
+Comment[id_ID]= pasang paket offline yang dibuat dengan Tea Maker
+Keywords=offline;
+Exec=tea-installer-gtk %f
+Icon=tea-installer-gtk
+Terminal=false
+Type=Application
+Categories=Utility;
