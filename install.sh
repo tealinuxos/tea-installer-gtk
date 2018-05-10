@@ -7,13 +7,13 @@ echo ""
 
 echo "defining var for execute"
 USR=./tea-installer-gtk/usr
-USR_ROOT=/usr
+USR_ROOT=/
 
 echo ""
 echo ""
 
 echo "deploying"
-cp $USR $USR_ROOT
+cp -r $USR $USR_ROOT
 
 echo ""
 echo ""
