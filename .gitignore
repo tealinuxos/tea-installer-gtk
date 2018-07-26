@@ -1,0 +1,8 @@
+*.tar.gz
+*.zip
+.bzr
+build-area
+*.dsc
+*.diff.gz
+*.changes
+*.deb

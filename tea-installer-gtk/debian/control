@@ -1,0 +1,11 @@
+Source: tea-installer-gtk
+Section: xfce
+Priority: extra
+Maintainer: nurul irfan <irfanlongstride@gmail.com>
+Build-Depends: debhelper (>=9)
+
+Package: tea-installer-gtk
+Architecture: all
+Depends: apt (>=1.0), python-apt (>=0.9), python3 (>=3.4)
+Description: Create .tea packages
+  Create .tea packages for software and it's dependencies for offline usage
